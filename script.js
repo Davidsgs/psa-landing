@@ -88,11 +88,16 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (direction === -1 && currentIndex > 0) {
                 return currentIndex - 1;
             }
-            return currentIndex;
+        }
+
+        function isMobile() {
+            return window.innerWidth < 768;
         }
 
         // Wheel events (Desktop)
         scrollWrapper.addEventListener("wheel", (e) => {
+            if (isMobile()) return; // Allow native scrolling on mobile dimensions
+
             e.preventDefault();
             if (isScrolling) return;
 
@@ -103,15 +108,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Touch events (Mobile)
         scrollWrapper.addEventListener("touchstart", (e) => {
+            if (isMobile()) return;
             startY = e.touches[0].clientY;
         }, { passive: true });
 
         scrollWrapper.addEventListener("touchmove", (e) => {
+            if (isMobile()) return;
             e.preventDefault(); // Prevents native drag scrolling
         }, { passive: false });
 
         scrollWrapper.addEventListener("touchend", (e) => {
+            if (isMobile()) return;
             if (isScrolling) return;
+
             const endY = e.changedTouches[0].clientY;
             const diff = startY - endY;
 
@@ -134,10 +143,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 if (href && href.startsWith("#")) {
-                    e.preventDefault();
                     const targetSec = document.querySelector(href);
-                    if (targetSec && !isScrolling) {
-                        smoothScrollTo(targetSec.offsetTop);
+                    if (targetSec) {
+                        if (isMobile()) {
+                            // If mobile, let native browser hash navigation handle it but smooth
+                            targetSec.scrollIntoView({ behavior: 'smooth' });
+                            e.preventDefault();
+                        } else if (!isScrolling) {
+                            e.preventDefault();
+                            smoothScrollTo(targetSec.offsetTop);
+                        }
                     }
                 }
             });

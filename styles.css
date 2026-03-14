@@ -59,8 +59,16 @@ select {
 
 #scroll-wrapper {
     height: 100vh;
-    overflow: hidden;
-    /* Fully controlled via JS smooth scroll to avoid OS bounce */
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Default to native scroll for mobile */
+}
+
+@media (min-width: 768px) {
+    #scroll-wrapper {
+        overflow: hidden;
+        /* Fully controlled via JS smooth scroll to avoid OS bounce on desktop */
+    }
 }
 
 /* Base sections styling */
