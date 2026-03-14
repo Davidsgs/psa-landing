@@ -577,11 +577,18 @@ img {
     z-index: 1;
 }
 
-.service-card .icon {
+.service-card .icon,
+.service-card .service-svg-icon {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     display: block;
     transition: var(--transition);
+}
+
+.service-card .service-svg-icon {
+    width: 65px;
+    height: 65px;
+    color: var(--primary);
 }
 
 .service-card h3 {
@@ -611,6 +618,7 @@ img {
 }
 
 .service-card:hover .icon,
+.service-card:hover .service-svg-icon,
 .service-card:hover h3 {
     color: var(--bg-dark);
 }
