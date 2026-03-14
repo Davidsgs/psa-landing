@@ -40,6 +40,8 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
+    overscroll-behavior-y: none;
+    /* Prevent scroll bounce */
     /* Prevent text selection */
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -61,6 +63,8 @@ select {
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
+    overscroll-behavior-y: none;
+    /* Prevent scroll bounce */
     /* Default to native scroll for mobile */
 }
 
