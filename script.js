@@ -214,7 +214,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Optional: reset form after sending
             wpForm.reset();
+            const nombreCount = document.getElementById("nombre-count");
+            const consultaCount = document.getElementById("consulta-count");
+            if (nombreCount) nombreCount.textContent = "0";
+            if (consultaCount) consultaCount.textContent = "0";
         });
+
+        // 5. Character Counters logic
+        const nombreInput = document.getElementById("nombre");
+        const nombreCount = document.getElementById("nombre-count");
+        if (nombreInput && nombreCount) {
+            nombreInput.addEventListener("input", function () {
+                nombreCount.textContent = this.value.length;
+            });
+        }
+
+        const consultaTextarea = document.getElementById("consulta");
+        const consultaCount = document.getElementById("consulta-count");
+        if (consultaTextarea && consultaCount) {
+            consultaTextarea.addEventListener("input", function () {
+                consultaCount.textContent = this.value.length;
+            });
+        }
     }
 
 });
