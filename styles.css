@@ -524,6 +524,9 @@ img {
 .about-section {
     padding: 6rem 0;
     background-color: var(--bg-light);
+    background-image: url('./public/white-background.webp');
+    background-size: cover;
+    background-position: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -883,6 +886,9 @@ img {
 .contact-section {
     padding: 6rem 0;
     background-color: #fff;
+    background-image: url('./public/white-background.webp');
+    background-size: cover;
+    background-position: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
