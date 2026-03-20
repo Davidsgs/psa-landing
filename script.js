@@ -135,6 +135,25 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, { passive: true });
 
+        // Keyboard events (Desktop)
+        document.addEventListener("keydown", (e) => {
+            if (isMobile()) return;
+            // Don't interfere if user is typing in a form field
+            const tagName = e.target.tagName.toLowerCase();
+            if (tagName === 'textarea' || tagName === 'input') return;
+
+            if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+                e.preventDefault();
+                if (isScrolling) return;
+
+                const direction = e.key === "ArrowDown" ? 1 : -1;
+                const nextIndex = getNextSectionIndex(direction);
+                if (nextIndex !== undefined) {
+                    smoothScrollTo(sections[nextIndex].offsetTop);
+                }
+            }
+        });
+
         // Update Nav links to use Custom Scroll
         const navLinks = document.querySelectorAll("nav a, .hero-buttons a, .scroll-indicator");
         navLinks.forEach(link => {
