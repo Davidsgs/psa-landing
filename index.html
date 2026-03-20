@@ -24,14 +24,14 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
-	
-	<!-- Icons -->
-	<link rel="icon" type="image/png" href="./public/ico/favicon-96x96.png" sizes="96x96" />
-	<link rel="icon" type="image/svg+xml" href="./public/ico/favicon.svg" />
-	<link rel="shortcut icon" href="./public/ico/favicon.ico" />
-	<link rel="apple-touch-icon" sizes="180x180" href="./public/ico/apple-touch-icon.png" />
-	<meta name="apple-mobile-web-app-title" content="PAS" />
-	<link rel="manifest" href="./public/ico/site.webmanifest" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="./public/ico/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./public/ico/favicon.svg" />
+    <link rel="shortcut icon" href="./public/ico/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./public/ico/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="PAS" />
+    <link rel="manifest" href="./public/ico/site.webmanifest" />
 </head>
 
 <body>
@@ -48,9 +48,9 @@
 
                 <div class="nav-links">
                     <a href="#inicio">Inicio</a>
-                    <a href="#nosotros">Nosotros</a>
                     <a href="#servicios">Servicios</a>
                     <a href="#proyectos">Proyectos</a>
+                    <a href="#nosotros">Nosotros</a>
                 </div>
 
                 <a href="#contacto" class="btn-cta bg-primary">Contáctanos</a>
@@ -62,15 +62,17 @@
             <div class="hero-background"></div>
             <div class="hero-content container">
                 <div class="hero-logo-wrapper" id="hero-logo-wrapper">
-                    <img src="./public/logo-alt.svg" alt="PAS Logo" class="pas-logo" id="animated-logo">
+                    <video src="./public/animated-logo.webm" class="pas-logo" id="animated-logo" autoplay loop muted
+                        playsinline></video>
                 </div>
 
                 <h1 class="hero-title">Soluciones que <span class="text-primary">sostienen</span> estructuras</h1>
-                <p class="hero-subtitle">Especialistas en perforaciones y anclajes técnicos de alta precisión.</p>
+                <p class="hero-subtitle">Especialistas en cortes y perforaciones de hormigón armado mediante tecnología
+                    diamantada refrigerada por agua.</p>
 
                 <div class="hero-buttons">
-                    <a href="#servicios" class="btn-cta bg-primary">Ver Servicios</a>
-                    <a href="#proyectos" class="btn-outline">Nuestro Portfolio</a>
+                    <a href="#contacto" class="btn-cta bg-primary">Contactanos</a>
+                    <a href="#servicios" class="btn-outline">Ver Servicios</a>
                 </div>
             </div>
 
@@ -78,44 +80,6 @@
             <div class="scroll-indicator">
                 <span class="material-symbols-outlined">expand_more</span>
                 <span class="material-symbols-outlined">expand_more</span>
-            </div>
-        </section>
-
-        <!-- Nosotros Section -->
-        <section id="nosotros" class="about-section">
-            <div class="container grids-2">
-                <div class="about-image fade-left animate-on-scroll">
-                    <div class="image-accent"></div>
-                    <!-- Placeholder using via.placeholder.com or Unsplash -->
-                    <img src="./public/about_us_img.webp" alt="PAS Profesionales en construcción">
-                    <div class="experience-badge">
-                        <span class="number">+8</span>
-                        <span class="text">Años de<br>Experiencia</span>
-                    </div>
-                </div>
-                <div class="about-content">
-                    <span class="section-top-title fade-up animate-on-scroll">Trayectoria y Solidez</span>
-                    <h2 class="section-title fade-up animate-on-scroll delay-100">Nosotros</h2>
-                    <p class="fade-up animate-on-scroll delay-200">En PAS (Piedra Angular Solutions) nos dedicamos a
-                        brindar soporte estructural de alta calidad,
-                        garantizando la solidez de cada proyecto mediante técnicas avanzadas y profesionalismo.</p>
-                    <p class="fade-up animate-on-scroll delay-300">Entendemos que la base de toda construcción es la
-                        confianza. Por eso, nuestro equipo de
-                        especialistas trabaja bajo los más estrictos estándares de seguridad y eficiencia operativa,
-                        adaptándonos a los desafíos más complejos de la arquitectura moderna en todo Buenos Aires y
-                        Ciudad Capital.</p>
-
-                    <div class="features-grid fade-up animate-on-scroll delay-400">
-                        <div class="feature-item">
-                            <span class="material-symbols-outlined text-primary">verified</span>
-                            <span>Calidad Certificada</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="material-symbols-outlined text-primary">engineering</span>
-                            <span>Técnicos Expertos</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -285,66 +249,6 @@
             </div>
         </section>
 
-        <!-- Galería / Proyectos Section -->
-        <section id="proyectos" class="portfolio-section">
-            <div class="container text-center">
-                <span class="section-top-title fade-up animate-on-scroll">Nuestro Portfolio</span>
-                <h2 class="section-title fade-up animate-on-scroll delay-100">Imágenes de nuestros trabajos</h2>
-
-                <div class="portfolio-grid">
-                    <!-- Project placeholders using real construction images from unsplash -->
-                    <div class="portfolio-item fade-up animate-on-scroll delay-100">
-                        <img src="./public/work-images/perforacion.webp" alt="Perforación de Hormigón">
-                        <div class="overlay">
-                            <span>Perforación H°A°</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item fade-up animate-on-scroll delay-200">
-                        <img src="./public/work-images/perforaciones-anclajes-mecanicos.webp" alt="Obra de anclajes">
-                        <div class="overlay">
-                            <span>Anclajes Especiales</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item fade-up animate-on-scroll delay-300">
-                        <img src="./public/work-images/perforacion-2-metros.webp" alt="Obra Civil">
-                        <div class="overlay">
-                            <span>Obra Civil</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item fade-up animate-on-scroll delay-400">
-                        <img src="./public/work-images/junta-de-dilatacion-2.webp" alt="Sellado">
-                        <div class="overlay">
-                            <span>Sellado de Juntas</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item fade-up animate-on-scroll delay-100">
-                        <img src="./public/work-images/abertura-junta.webp" alt="Mecánico">
-                        <div class="overlay">
-                            <span>Anclaje Mecánico</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item fade-up animate-on-scroll delay-200">
-                        <img src="./public/work-images/corte-disco-diamantado.webp" alt="Industrial">
-                        <div class="overlay">
-                            <span>Proyectos Industriales</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item fade-up animate-on-scroll delay-300">
-                        <img src="./public/work-images/plenos.webp" alt="Equipamiento">
-                        <div class="overlay">
-                            <span>Equipamiento</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item fade-up animate-on-scroll delay-400">
-                        <img src="./public/work-images/perforacion-3.webp" alt="Planificación">
-                        <div class="overlay">
-                            <span>Planificación</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Contact Section -->
         <section id="contacto" class="contact-section">
             <div class="container grids-2">
@@ -421,6 +325,104 @@
                             </svg>
                         </button>
                     </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galería / Proyectos Section -->
+        <section id="proyectos" class="portfolio-section">
+            <div class="container text-center">
+                <span class="section-top-title fade-up animate-on-scroll">Nuestro Portfolio</span>
+                <h2 class="section-title fade-up animate-on-scroll delay-100">Imágenes de nuestros trabajos</h2>
+
+                <div class="portfolio-grid">
+                    <!-- Project placeholders using real construction images from unsplash -->
+                    <div class="portfolio-item fade-up animate-on-scroll delay-100">
+                        <img src="./public/work-images/perforacion.webp" alt="Perforación de Hormigón">
+                        <div class="overlay">
+                            <span>Perforación H°A°</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item fade-up animate-on-scroll delay-200">
+                        <img src="./public/work-images/perforaciones-anclajes-mecanicos.webp" alt="Obra de anclajes">
+                        <div class="overlay">
+                            <span>Anclajes Especiales</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item fade-up animate-on-scroll delay-300">
+                        <img src="./public/work-images/perforacion-2-metros.webp" alt="Obra Civil">
+                        <div class="overlay">
+                            <span>Obra Civil</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item fade-up animate-on-scroll delay-400">
+                        <img src="./public/work-images/junta-de-dilatacion-2.webp" alt="Sellado">
+                        <div class="overlay">
+                            <span>Sellado de Juntas</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item fade-up animate-on-scroll delay-100">
+                        <img src="./public/work-images/abertura-junta.webp" alt="Mecánico">
+                        <div class="overlay">
+                            <span>Anclaje Mecánico</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item fade-up animate-on-scroll delay-200">
+                        <img src="./public/work-images/corte-disco-diamantado.webp" alt="Industrial">
+                        <div class="overlay">
+                            <span>Proyectos Industriales</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item fade-up animate-on-scroll delay-300">
+                        <img src="./public/work-images/plenos.webp" alt="Equipamiento">
+                        <div class="overlay">
+                            <span>Equipamiento</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item fade-up animate-on-scroll delay-400">
+                        <img src="./public/work-images/perforacion-3.webp" alt="Planificación">
+                        <div class="overlay">
+                            <span>Planificación</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nosotros Section -->
+        <section id="nosotros" class="about-section">
+            <div class="container grids-2">
+                <div class="about-image fade-left animate-on-scroll">
+                    <div class="image-accent"></div>
+                    <!-- Placeholder using via.placeholder.com or Unsplash -->
+                    <img src="./public/about_us_img.webp" alt="PAS Profesionales en construcción">
+                    <div class="experience-badge">
+                        <span class="number">+8</span>
+                        <span class="text">Años de<br>Experiencia</span>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <span class="section-top-title fade-up animate-on-scroll">Trayectoria y Solidez</span>
+                    <h2 class="section-title fade-up animate-on-scroll delay-100">Nosotros</h2>
+                    <p class="fade-up animate-on-scroll delay-200">En PAS (Piedra Angular Solutions) nos dedicamos a
+                        brindar soporte estructural de alta calidad,
+                        garantizando la solidez de cada proyecto mediante técnicas avanzadas y profesionalismo.</p>
+                    <p class="fade-up animate-on-scroll delay-300">Entendemos que la base de toda construcción es la
+                        confianza. Por eso, nuestro equipo de
+                        especialistas trabaja bajo los más estrictos estándares de seguridad y eficiencia operativa,
+                        adaptándonos a los desafíos más complejos de la arquitectura moderna en todo Buenos Aires y
+                        Ciudad Capital.</p>
+
+                    <div class="features-grid fade-up animate-on-scroll delay-400">
+                        <div class="feature-item">
+                            <span class="material-symbols-outlined text-primary">verified</span>
+                            <span>Calidad Certificada</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="material-symbols-outlined text-primary">engineering</span>
+                            <span>Técnicos Expertos</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
