@@ -350,4 +350,150 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // ==========================================
+    // 6. Image Modal Logic (Portfolio)
+    // ==========================================
+    const imageModal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    if (imageModal && modalImage && closeModalBtn) {
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', function () {
+                const img = this.querySelector('img');
+                if (img) {
+                    modalImage.src = img.src;
+                    imageModal.classList.add('show');
+                    modalImage.classList.remove('zoomed');
+                }
+            });
+        });
+
+        const wrapper = document.getElementById('modal-content-wrapper');
+        
+        let isDragging = false;
+        let startX, startY;
+        let translateX = 0, translateY = 0;
+        let initialTranslateX = 0, initialTranslateY = 0;
+        const ZOOM_SCALE = 2.5;
+        let hasDragged = false;
+
+        // Mouse and Touch events for drag-to-pan via CSS Transforms (solves all native overflow layout bugs)
+        if (wrapper) {
+            const startDrag = (e) => {
+                if (!modalImage.classList.contains('zoomed')) return;
+                isDragging = true;
+                hasDragged = false;
+                
+                modalImage.classList.add('dragging');
+                
+                const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+
+                startX = clientX;
+                startY = clientY;
+                initialTranslateX = translateX;
+                initialTranslateY = translateY;
+            };
+
+            const endDrag = () => {
+                if (isDragging) {
+                    isDragging = false;
+                    modalImage.classList.remove('dragging');
+                }
+            };
+
+            const doDrag = (e) => {
+                if (!isDragging) return;
+                
+                // Only preventDefault on touchmove to stop page scrolling,
+                // but we also prevent default on mousemove to avoid selecting text/ghost dragging.
+                if (e.cancelable) e.preventDefault();
+                
+                const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+
+                const moveX = clientX - startX;
+                const moveY = clientY - startY;
+                
+                if (Math.abs(moveX) > 5 || Math.abs(moveY) > 5) {
+                    hasDragged = true;
+                }
+                
+                translateX = initialTranslateX + moveX;
+                translateY = initialTranslateY + moveY;
+                
+                // Calculate pixel-perfect screen bounds
+                const scaledWidth = modalImage.clientWidth * ZOOM_SCALE;
+                const scaledHeight = modalImage.clientHeight * ZOOM_SCALE;
+                
+                // We only allow dragging if the scaled image is bigger than the screen.
+                const boundX = Math.max(0, (scaledWidth - wrapper.clientWidth) / 2);
+                const boundY = Math.max(0, (scaledHeight - wrapper.clientHeight) / 2);
+                
+                translateX = Math.max(-boundX, Math.min(boundX, translateX));
+                translateY = Math.max(-boundY, Math.min(boundY, translateY));
+                
+                // apply translate FIRST then scale so values are in raw screen pixels
+                modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${ZOOM_SCALE})`;
+            };
+
+            // Mouse bindings
+            wrapper.addEventListener('mousedown', (e) => { e.preventDefault(); startDrag(e); });
+            wrapper.addEventListener('mousemove', doDrag);
+            wrapper.addEventListener('mouseup', endDrag);
+            wrapper.addEventListener('mouseleave', endDrag);
+
+            // Touch bindings 
+            // passive: false on touchmove is required to allow e.preventDefault() which blocks browser pull-to-refresh / scrolling
+            wrapper.addEventListener('touchstart', startDrag, { passive: true });
+            wrapper.addEventListener('touchmove', doDrag, { passive: false });
+            wrapper.addEventListener('touchend', endDrag);
+            wrapper.addEventListener('touchcancel', endDrag);
+        }
+
+        // Close on X button
+        closeModalBtn.addEventListener('click', () => {
+            imageModal.classList.remove('show');
+            modalImage.classList.remove('zoomed');
+            modalImage.style.transform = '';
+            translateX = 0; translateY = 0;
+        });
+
+        // Close on background click
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal || e.target.classList.contains('modal-content-wrapper')) {
+                if (hasDragged) {
+                    hasDragged = false;
+                    return;
+                }
+                imageModal.classList.remove('show');
+                modalImage.classList.remove('zoomed');
+                modalImage.style.transform = '';
+                translateX = 0; translateY = 0;
+            }
+        });
+
+        // Toggle zoom on image click
+        modalImage.addEventListener('click', () => {
+            if (hasDragged) {
+                hasDragged = false; // Reset for next time
+                return;
+            }
+            
+            modalImage.classList.toggle('zoomed');
+            
+            if (modalImage.classList.contains('zoomed')) {
+                translateX = 0; 
+                translateY = 0;
+                modalImage.style.transform = `translate(0px, 0px) scale(${ZOOM_SCALE})`;
+            } else {
+                translateX = 0; 
+                translateY = 0;
+                modalImage.style.transform = '';
+            }
+        });
+    }
+
 });
