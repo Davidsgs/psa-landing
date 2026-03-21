@@ -656,24 +656,26 @@ img {
 }
 
 .services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
 }
 
 @media (min-width: 768px) {
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .services-grid .service-card {
+        width: calc(50% - 1rem);
     }
 }
 
 @media (min-width: 1024px) {
-    .services-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .services-grid .service-card {
+        width: calc(33.3333% - 1.3333rem);
     }
 }
 
 .service-card {
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: var(--border-radius);
@@ -695,7 +697,7 @@ img {
 .service-card .service-svg-icon {
     font-size: 2.5rem;
     display: block;
-    transition: transform 0.4s ease;
+    transition: transform 0.4s ease, color 0.4s ease, fill 0.4s ease, stroke 0.4s ease;
 }
 
 .service-card .service-svg-icon {
@@ -705,11 +707,16 @@ img {
     margin-bottom: 1rem;
 }
 
+/* Ensure SVG internal paths transition smoothly */
+.service-card .service-svg-icon * {
+    transition: fill 0.4s ease, stroke 0.4s ease;
+}
+
 .service-card h3 {
     font-size: 1.1rem;
     color: var(--text-light);
     margin-bottom: 0;
-    transition: transform 0.4s ease;
+    transition: transform 0.4s ease, color 0.4s ease;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 0.05em;
@@ -744,6 +751,27 @@ img {
 .service-card:hover h3 {
     color: var(--bg-dark);
     transform: translateY(-55px);
+}
+
+/* Override SVG specific colors on hover so detail is retained but contrast is high */
+.service-card:hover .service-svg-icon *[style*="fill:#f49600"],
+.service-card:hover .service-svg-icon *[fill="#f49600"],
+.service-card:hover .service-svg-icon *[fill="#E20613"],
+.service-card:hover .service-svg-icon .st0,
+.service-card:hover .service-svg-icon *[style*="fill:#E20613"] {
+    fill: var(--bg-dark) !important;
+}
+
+.service-card:hover .service-svg-icon *[style*="stroke:#f49600"],
+.service-card:hover .service-svg-icon *[stroke="#f49600"] {
+    stroke: var(--bg-dark) !important;
+}
+
+.service-card:hover .service-svg-icon *[style*="fill:#575756"],
+.service-card:hover .service-svg-icon *[fill="#575756"],
+.service-card:hover .service-svg-icon .st2,
+.service-card:hover .service-svg-icon .st3 {
+    fill: #ffffff !important;
 }
 
 .service-card:hover .service-hover-content {
@@ -834,6 +862,7 @@ img {
     position: relative;
     border-radius: var(--border-radius);
     overflow: hidden;
+    cursor: pointer;
 }
 
 .portfolio-item img {
@@ -1037,5 +1066,84 @@ img {
 }
 
 .social-links a:hover {
+    color: var(--primary);
+}
+
+/* ==========================================================================
+   Image Modal (Lightbox)
+   ========================================================================== */
+.image-modal {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    
+    /* Use visibility+opacity instead of display for transitions */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden !important; /* Block all native scroll: panning uses transform */
+    display: flex !important; /* Always flex to keep it centered perfectly */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#modal-image {
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: zoom-in;
+    transform-origin: center; /* Enlarge from the center */
+}
+
+#modal-image.zoomed {
+    /* Dimensions stay exactly the same, but scale(X) makes it huge visually */
+    cursor: grab;
+    /* transition is kept to snap back when releasing out of bounds or zooming out */
+}
+
+#modal-image.zoomed.dragging {
+    transition: none !important; /* Stick to pixel-perfect mouse movement */
+    cursor: grabbing;
+}
+
+.close-modal {
+    position: fixed;
+    top: 15px;
+    right: 25px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: 300;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10001;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.close-modal:hover {
     color: var(--primary);
 }
