@@ -722,6 +722,17 @@ img {
     letter-spacing: 0.05em;
 }
 
+/* Hover text swap for Anclajes card */
+.service-card h3 .text-hover {
+    display: none;
+}
+.service-card:hover h3 .text-default {
+    display: none;
+}
+.service-card:hover h3 .text-hover {
+    display: inline;
+}
+
 /* Hover Interaction for Cards */
 .service-hover-content {
     position: absolute;
